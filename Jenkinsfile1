@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    stages{
+        stage("Git SCM"){
+            steps{
+                //echo "git URL"
+                git credentialsId: 'devops1000k', url: 'https://github.com/DevOps1000k/java-tomcat-maven-example.git'
+            }
+        }
+        stage("Build"){
+            steps{
+                //echo "git URL"
+                //git credentialsId: 'devops1000k', url: 'https://github.com/DevOps1000k/java-tomcat-maven-example.git'
+                bat 'mvn clean install'
+            }
+        }
+        stage("Archive"){
+            steps{
+                //echo "git URL"
+                //git credentialsId: 'devops1000k', url: 'https://github.com/DevOps1000k/java-tomcat-maven-example.git'
+                //bat 'mvn clean install'
+                archiveArtifacts artifacts: '**/*.war', followSymlinks: false, onlyIfSuccessful: true 
+            }
+        }
+    }
+}
