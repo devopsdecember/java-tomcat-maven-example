@@ -1,0 +1,24 @@
+pipeline {
+	agent any
+	stages {		
+		
+		stage ("Maven-Build"){
+			steps {
+				bat 'mvn clean install'
+			}
+			post {
+			success {
+			echo "Now Archiving ----"
+			archiveArtifacts artifacts : '**/*.war'
+			//archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+				}
+			}
+		}
+		stage ("Dev CD Pipeline"){
+			steps{
+			build job : 'Deploy-Servlet_Staging_env'
+			}
+		}
+		
+	}
+}
