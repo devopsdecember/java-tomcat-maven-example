@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git-Hub URL') {
+            steps {
+               
+                //git credentialsId: 'githublogin', url: 'https://github.com/devopsdecember/java-tomcat-maven-example.git'
+                git branch: 'release', credentialsId: 'githublogin', url: 'https://github.com/devopsdecember/java-tomcat-maven-example.git'
+            }
+        }
+        stage('Maven - Build') {
+            steps {
+               
+               bat 'mvn clean install'
+               //maven clean install
+            }
+        }
+    }
+}
