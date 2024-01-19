@@ -12,9 +12,9 @@ stage('Build') {
                 bat 'mvn clean install'
             }
         }
-stage('Maven') {
+stage('Archive') {
             steps {
-                bat 'mvn clean install'
+                archiveArtifacts artifacts: '**/*.war', followSymlinks: false
             }
         }
     }
