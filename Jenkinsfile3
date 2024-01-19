@@ -7,12 +7,12 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-stage('Maven Build') {
+stage('Build') {
             steps {
                 bat 'mvn clean install'
             }
         }
-stage('Maven Build') {
+stage('Maven') {
             steps {
                 bat 'mvn clean install'
             }
